@@ -5,7 +5,8 @@ with open('feiyong.txt', 'r') as a:
 
 data = eval(x)
 s = 0
-N = 100000  # 随机仿真次数
+c = 0
+N = 10000  # 随机仿真次数
 for j in range(N):  # 蒙特卡洛仿真
     xing1 = data[0] * 24  # 一费牌24张
     xing2 = data[1] * 21
@@ -20,13 +21,15 @@ for j in range(N):  # 蒙特卡洛仿真
         choose_result.append(choose)
         # print(choose)
 
-    first_pai = choose_result[:5]
+    first_pai = choose_result[5:10]
     zhenying = [i.split(' ')[3] for i in first_pai]
     # print(zhenying)
     m = zhenying.count('长安')
     s += m
+    if m > 0:
+       c += 1
 pass
-print('平均第一轮五张牌出现长安牌的概率为：', s / N)
-
+print('平均第一轮五张牌出现长安牌的期望为：', s / N)
+print('平均第一轮五张牌出现长安牌的概率为：', c / N)
 # x = [choose_result.count(i) for i in choose_result]
 # print(max(x))
